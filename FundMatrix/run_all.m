@@ -28,7 +28,6 @@ for m = 2
     load(['data/sfm_clean/',dataName,'_data_clean.mat'])
 
     N = size(datum,2);
-    N = 100;
 
     message = ['Dataset: ',dataName,'. Total number of samples: ',num2str(N)];
     disp(message)
