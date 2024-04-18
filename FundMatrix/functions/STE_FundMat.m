@@ -5,7 +5,7 @@ function [F1]=STE_FundMat(X)
 dd = 8;
 initcov=eye(D);
 eps=10^-10;
-Lam = [2,4,6,7,8,9,10];
+Lam = [2,4,6,8,10];
 
 for i = 1:length(Lam)
 
