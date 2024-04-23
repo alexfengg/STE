@@ -1,4 +1,4 @@
-function [F1]=STE_FundMat(X)
+function [F]=STE_FundMat(X)
 % estimate fundamental matrix by applying STE
 
 [D,N]=size(X);
@@ -14,7 +14,7 @@ for i = 1:length(Lam)
     cov=initcov;
     iter=1;
 
-    while norm((oldcov-cov),'fro')>10^-10 & iter<100
+    while norm((oldcov-cov),'fro')>10^-4 & iter<100
         oldcov=cov;
         temp = (X'/(cov+eps*eye(D))).*X';
         w = 1./(sum(temp,2)+eps);
@@ -44,6 +44,6 @@ cov = COV{ind};
 F = reshape(V(:,end),[3,3])';
 [U,S,V] = svd(F);
 S(3,3)=0;
-F1 = U*S*V';
+F = U*S*V';
 
 end

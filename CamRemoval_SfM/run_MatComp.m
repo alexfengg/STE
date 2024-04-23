@@ -58,13 +58,13 @@ for id=1:14
     E1(isnan(E1))=0;
     Omega = E1~=0;
     
-    % make the stepsize for Piccadilly smaller to avoid divergence
-    if id==8
-        delta = size(Omega,1)^2/sum(Omega(:))*0.1; % step size
-        X1 = SVT(E1,Omega,delta);
+    % adjust the stepsize for some datasets smaller to avoid divergence
+    if ismember(id,[8,9,10,11,14])
+        delta = 0.1*size(E1,1)^2/sum(Omega(:)); % step size
     else
-        X1 = SVT(E1,Omega);
+        delta = [];
     end
+    X1 = SVT(E1,Omega,delta);
     X = X1;
     n = size(X,1)/3;
     omega1 = Omega(1:3:end,1:3:end);

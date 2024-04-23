@@ -11,6 +11,7 @@ close all
 % add path
 setpaths
 
+mkdir('result/LUD/')
 %% Load data
 data_names{1} = 'Alamo';
 data_names{2} = 'Ellis_Island';
@@ -27,7 +28,7 @@ data_names{12} = 'Vienna_Cathedral';
 data_names{13} = 'Yorkminster';
 data_names{14} = 'Gendarmenmarkt';
 
-for id=1:14
+for id=14
     DataSetName=data_names{id};
 
     load(['data/SfM_data/' DataSetName '_data.mat']);
@@ -40,3 +41,5 @@ for id=1:14
     save(['result/LUD/',data_names{id},'_LUD.mat'],'result_LUD','data_mod_LUD','RemComp','time_LUD');
     
 end
+
+rmpaths

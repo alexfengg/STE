@@ -40,7 +40,7 @@ opt.svtopt = 'normal';
 opt.scaleopt = 'normal';
 
 %%
-for id=1:14
+for id=2
     %% load data
     DataSetName=data_names{id};
     load(['data/SfM_data/' DataSetName '_data.mat']);
@@ -62,7 +62,7 @@ for id=1:14
     [U,S,V] = svd(cov);
     C = U(:,1:6)*U(:,1:6)'*E1; % projection of data to the subspace
     Dist = ((sum(C.*C,1)).^.5); %  dist to the subspace
-    [~,Midx]=maxk(Dist,round(data.n*0.15)); % choose outliers
+    [~,Midx]=maxk(Dist,round(data.n*0.2)); % choose outliers
     rm_id = ceil(Midx/3);
     rm_id = unique(rm_id);
     data1 = reduce_data_from_id(data,rm_id);

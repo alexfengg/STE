@@ -21,46 +21,62 @@ data_names{13} = 'Yorkminster';
 data_names{14} = 'Gendarmenmarkt';
 
 setpaths
+
+save_loc = 'result/RSR/';
+mkdir(save_loc)
 %%
-for m = 2
+df = 0.01;
+thr = [1:10];
+for m = 1:14
     dataName = data_names{m};
-    % load(['data/SfM_data/',dataName,'_data.mat'])
     load(['data/sfm_clean/',dataName,'_data_clean.mat'])
-
     N = size(datum,2);
-
+    mAA=zeros(1,4);
     message = ['Dataset: ',dataName,'. Total number of samples: ',num2str(N)];
     disp(message)
-    R_err = parforComupte(datum,N,message);
-    disp('Finished! The median errors:')
-    median(R_err)
-
-    save_loc = 'result/RSR/';
-    if ~exist(save_loc,'dir')
-        mkdir(save_loc)
+    [R_err,T_err] = parforComupte(datum,N,message);
+    for i = 1:4
+        tmp = zeros(10,1);
+        for j=1:size(thr,2)
+            tmp(j) = sum(R_err(:,i)<thr(j))/N;
+        end
+        mAA(i)= mean(tmp);
     end
-    save([save_loc,dataName,'_RSR.mat'],'R_err')
+    disp('Finished! Results (STE, TEM, FMS, SFMS) are shown as follows:')
+    disp('The median rotation errors (degree):')
+    disp(median(R_err))
+    disp('The mean rotation errors (degree):')
+    disp(mean(R_err))
+    disp('The median direction errors (degree):')
+    disp(median(T_err))
+    disp('The mean direction errors (degree):')
+    disp(mean(T_err))
+    disp('mAA(10):')
+    disp(mAA)
+    save([save_loc,dataName,'_RSR.mat'],'R_err','T_err','mAA')
 end
 
 rmpaths
 %%
 
-function R_err = parforComupte(datum,N,message)
-
+function [R_err,T_err] = parforComupte(datum,N,message)
 R_err = zeros(N,4);
+T_err = zeros(N,4);
+Tr0 = zeros(3,N);Tr1 = zeros(3,N);Tr2 = zeros(3,N);
+Tr3 = zeros(3,N);Tr4 = zeros(3,N);
 D = parallel.pool.DataQueue;
 h = waitbar(0, message);
 afterEach(D, @nUpdateWaitbar);
 p=1;
-
+% option for fms
 opt.svtopt = 'normal';
 opt.scaleopt = 'normal';
 
 parfor i = 1:N
     send(D, i);
-    % fprintf('Dataset: %s (%d/14), %d / %d\n', dataName, m,i,N);
     df = datum{i};
     R0 = df.R0;
+    t0 = df.t0;
     x1 = df.points(1:2,:);
     x2 = df.points(3:4,:);
     K1 = df.K(:,1:3);
@@ -105,12 +121,28 @@ parfor i = 1:N
     [R3,t3] = relpos2(F3,x1,x2,K1,K2);
     [R4,t4] = relpos2(F4,x1,x2,K1,K2);
 
+    Tr0(:,i) = t0;
+    Tr1(:,i) = t1;
+    Tr2(:,i) = t2;
+    Tr3(:,i) = t3;
+    Tr4(:,i) = t4;
+
     a1 = abs(acos((trace(R1*R0')-1)/2))/pi*180;
     a2 = abs(acos((trace(R2*R0')-1)/2))/pi*180;
     a3 = abs(acos((trace(R3*R0')-1)/2))/pi*180;
     a4 = abs(acos((trace(R4*R0')-1)/2))/pi*180;
     R_err(i,:) = [a1,a2,a3,a4];
+
 end
+
+% Translation Alignment
+[~,~,er1] = TransAlign(Tr1,Tr0);
+[~,~,er2] = TransAlign(Tr2,Tr0);
+[~,~,er3] = TransAlign(Tr3,Tr0);
+[~,~,er4] = TransAlign(Tr4,Tr0);
+
+T_err = [er1',er2',er3',er4'];
+
 close(h)
 
     function nUpdateWaitbar(~)

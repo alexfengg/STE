@@ -8,11 +8,11 @@ n=n/3;
 p = sum(Omega(:));
 
 if nargin<3
-    if sum(Omega(:))/m*n<0.2
-        delta = 0.1*m*n/p;
-    else
-        delta = 1*m*n/p;
-    end
+    delta = 1*m*n/p;
+end
+
+if isempty(delta)
+    delta = 1*m*n/p;
 end
 
 tau = 10*m;
@@ -34,17 +34,13 @@ for k=1:maxiter
     if relerr<0.1
         break
     end
-
-    if relerr1<relerr && k>10
+    if relerr1<relerr && k>50
         break
     end
-
     Y = Y+delta*Omega.*(M-X);
 end
 
-
 end
-
 
 function Y = svtopt(X,tau)
 % [U,S,V] = svd(X);
