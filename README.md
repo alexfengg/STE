@@ -57,8 +57,13 @@ The difference between the process-based (default in Matlab) environments and th
 
 ### References
 [1] Feng Yu, Teng Zhang, and Gilad Lerman. "A Subspace-Constrained Tyler's Estimator and its Applications to Structure from Motion." arXiv:2404.11590.
+
 [2] Soumyadip Sengupta, Tal Amir, Meirav Galun, Tom Goldstein, David Jacobs, Amit Singer, and Ronen Basri. "A new rank constraint on multi-view fundamental matrices, and its application to camera location recovery." CVPR 2017.
+
 [3] Kyle Wilson and Noah Snavely. "Robust Global Translations with 1DSfM." ECCV 2014. 
+
 [4]Gilad Lerman and Tyler Maunu. "Fast, Robust and Non-convex Subspace Recovery." Information and Inference: A Journal of the IMA 2018.
+
 [5] Teng Zhang. "Robust subspace recovery by Tyler’s M-estimator." Information and Inference: A Journal of the IMA 2016.
+
 [6] Onur Ozyesil and Amit Singer. "Robust camera location estimation by convex programming." CVPR 2015.
