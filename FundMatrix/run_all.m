@@ -34,7 +34,7 @@ for m = 1:14
     mAA=zeros(1,4);
     message = ['Dataset: ',dataName,'. Total number of samples: ',num2str(N)];
     disp(message)
-    [R_err,T_err] = parforComupte(datum,N,message);
+    [R_err,T_err] = computeFMErrorsParallel(datum,N,message);
     for i = 1:4
         tmp = zeros(10,1);
         for j=1:size(thr,2)
@@ -42,7 +42,7 @@ for m = 1:14
         end
         mAA(i)= mean(tmp);
     end
-    disp('Finished! Results (STE, TEM, FMS, SFMS) are shown as follows:')
+    disp('Finished! Results (STE, TME, FMS, SFMS) are shown as follows:')
     disp('The median rotation errors (degree):')
     disp(median(R_err))
     disp('The mean rotation errors (degree):')
@@ -59,7 +59,7 @@ end
 rmpaths
 %%
 
-function [R_err,T_err] = parforComupte(datum,N,message)
+function [R_err,T_err] = computeFMErrorsParallel(datum,N,message)
 R_err = zeros(N,4);
 T_err = zeros(N,4);
 Tr0 = zeros(3,N);Tr1 = zeros(3,N);Tr2 = zeros(3,N);

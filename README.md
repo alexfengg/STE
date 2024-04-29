@@ -9,13 +9,13 @@ The experiments are based on the [Photo Tourism Dataset](https://www.cs.cornell.
 ##### Step 1: download the SfM (Clean) Data
 Download the processed SfM data from [this link](https://drive.google.com/file/d/1-nj44wLfFfZA8gu9fHxok6iLTGTbILUM/view?usp=sharing) and place the "sfm_clean" folder at "STE\FundMatrix\data\sfm_clean".
 
-##### Step 2: implementation
-Run the MATLAB script run_all.m located in the directory "STE\FundMatrix" to produce the errors of the Subspace-Constrained Tyler's Estimator (STE) and other Robust Subspace Recovery (RSR) methods of TME, FMS, and SFMS.
+##### Step 2: running experiments
+Run the MATLAB script run_all.m located in the directory "STE\FundMatrix" to generate the errors of the Subspace-Constrained Tyler's Estimator (STE) and other Robust Subspace Recovery (RSR) methods of TME, FMS, and SFMS. The errors correspond to Table 1-2 in [1] while the results are obtained separetely in 'py/run_ransac.py'. 
 
 ```
 run_all
 ```
-Generate the figures by calling the script 'plotting.m'.
+Generate the Figure 3-5 by calling the script 'plotting.m'.
 ```
 plotting
 ```
@@ -25,7 +25,7 @@ plotting
 ##### Step 1: download the  SfM Data
 Download the required SfM data from [this link](https://drive.google.com/file/d/1-uOciycEpK04Sf_gxhs_qet1VivL05Xw/view?usp=sharing) and place the "SfM_data" folder at "STE\CamRemoval_SfM\data\SfM_data".
 
-##### Step 2: implementation
+##### Step 2: running experiments
 Follow the instructions below to produce the errors of STE and other RSR methods (TME, FMS, SFMS):
 1. Run the LUD pipeline [6] by calling the function run_baseline located in the directory "STE\CamRemoval_SfM".
 ```
