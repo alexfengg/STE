@@ -52,7 +52,6 @@ Note: Each entry (datum{k}) includes the following information:
 3. Parallel Computing: it is recommended that run the parfor in thread-based enviroments for experiment 1. To setup, change the setting in 'Preferences/Parallel Computing Toolbox/Parallel Environment/Default Profile' from "Processes" to "Threads".
 The difference between the process-based (default in Matlab) environments and thread-based environments see [here](https://www.mathworks.com/help/parallel-computing/choose-between-thread-based-and-process-based-environments.html#mw_6bbf0761-74c0-404e-9db6-77b82c7c138c). 
 4. The comparing robust subspace recovery (RSR) methods include FMS [4] and TME [5].
-5. The comparing RANSAC methods for fundamental matrices include RANSAC (by [OpenCV](https://opencv.org)), [DEGENSAC](https://ieeexplore.ieee.org/document/1467346) and [LO-RANSAC](https://link.springer.com/chapter/10.1007/978-3-540-45243-0_31) (by [pydegensac](https://github.com/ducha-aiki/pydegensac?tab=readme-ov-file)).
 
 
 
