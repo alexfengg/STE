@@ -7,7 +7,7 @@ The experiments are based on the [Photo Tourism Dataset](https://www.cs.cornell.
 #### Experiment 1: Robust Fundamental Matrix Estimation
 
 ##### Step 1: download the SfM (Clean) Data
-Download the processed SfM data from [this link](https://minersutep-my.sharepoint.com/:u:/g/personal/fyu_utep_edu/EW2o_C1Rrx5NnKkXmiPJaXIBf_tvVM2P3uiZbMzpZpb0vA?e=CcxH5V) and place the "sfm_clean" folder at "STE\FundMatrix\data\sfm_clean".
+Download the processed SfM data from [this link](https://minersutep-my.sharepoint.com/:u:/g/personal/fyu_utep_edu/EW2o_C1Rrx5NnKkXmiPJaXIB-9Z_vrMh0-Dd9f1RXY-5bw?e=CD1fKB) and place the "sfm_clean" folder at "STE\FundMatrix\data\sfm_clean".
 
 ##### Step 2: running experiments
 Run the MATLAB script run_all.m located in the directory "STE\FundMatrix" to generate the errors of the Subspace-Constrained Tyler's Estimator (STE) and other Robust Subspace Recovery (RSR) methods of TME, FMS, and SFMS. The errors correspond to Table 1-2 in [1] while the results are obtained separetely in 'py/run_ransac.py'. 
@@ -23,7 +23,7 @@ plotting
 #### Experiment 2: Initial Camera Removal for SfM
 
 ##### Step 1: download the  SfM Data
-Download the required SfM data from [this link](https://minersutep-my.sharepoint.com/:u:/g/personal/fyu_utep_edu/EfjU9Z2YWvhGm-chT6PyMRoBswz9nWVhFRTxLKC3cL4uZg?e=kdeJNT) and place the "SfM_data" folder at "STE\CamRemoval_SfM\data\SfM_data".
+Download the required SfM data from [this link](https://minersutep-my.sharepoint.com/:u:/g/personal/fyu_utep_edu/EfjU9Z2YWvhGm-chT6PyMRoBPB0ux_nF9MxNalUAZmqvQA?e=BbxMnh) and place the "SfM_data" folder at "STE\CamRemoval_SfM\data\SfM_data".
 
 ##### Step 2: running experiments
 Follow the instructions below to produce the errors of STE and other RSR methods (TME, FMS, SFMS):
